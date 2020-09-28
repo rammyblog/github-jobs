@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import useFetchJob from "./useFetchJob"
 import { Container } from "react-bootstrap"
 import Job from "./Job"
+import JobsPaginations from "./JobsPaginations"
 function App() {
   const [params, setParams] = useState({})
   const [page, setPage] = useState(1)
@@ -12,10 +13,12 @@ function App() {
       {loading && <h1>Loading....</h1>}
       {error && <h1>Error, Try refreshing</h1>}
       <>
-        <h1>GitHub Jons</h1>
+        <h1 className="mb-4">GitHub Jobs</h1>
+        <JobsPaginations page={page} setPage={setPage} />
         {jobs.map((job) => {
           return <Job key={job.id} job={job} />
         })}
+        <JobsPaginations page={page} setPage={setPage} />
       </>
     </Container>
   )
